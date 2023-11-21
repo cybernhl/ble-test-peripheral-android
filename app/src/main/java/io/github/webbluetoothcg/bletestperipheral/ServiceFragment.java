@@ -18,7 +18,6 @@ package io.github.webbluetoothcg.bletestperipheral;
 
 import android.app.Fragment;
 import android.bluetooth.BluetoothGattCharacteristic;
-import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
 import android.os.ParcelUuid;
 
