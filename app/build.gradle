@@ -1,23 +1,30 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion '30.0.3'
+    compileSdk 34
     buildFeatures {
-        dataBinding true
+        buildConfig true
         viewBinding true
     }
     lintOptions {
-        quiet true
-        checkReleaseBuilds false
         // if true, stop the gradle build if errors are found
         abortOnError false
+        quiet true
+        warningsAsErrors true
+        checkReleaseBuilds false
+        disable 'MissingTranslation',
+                'ExtraTranslation',
+                'TypographyEllipsis',
+                'UnspecifiedImmutableFlag',
+                'UnusedResources',
+                'TypographyDashes',
+                'NonConstantResourceId'
     }
     namespace   "io.github.webbluetoothcg.bletestperipheral"
     defaultConfig {
         applicationId "io.github.webbluetoothcg.bletestperipheral"
-        minSdkVersion 21
-        targetSdkVersion 30
+        minSdk 18
+        targetSdk 34
         versionCode 10
         versionName '10.0'
     }
@@ -35,4 +42,8 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.test.runner
+    androidTestImplementation libs.androidx.espresso.core
 }
