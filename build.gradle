@@ -1,13 +1,42 @@
 buildscript {
     ext {
         //Ref : https://developer.android.com/build/releases/past-releases
-        agp_gradle = libs.versions.agp.version.get()
-        kotlin_version = "1.9.22"
+        agp_gradle = libs.versions.agp.get()
+        kotlin_version = libs.versions.kotlin.get()
     }
     repositories {
-        google()
-        maven { url 'https://maven.google.com' }
-        jcenter()
+        gradlePluginPortal()
+        maven { url "https://plugins.gradle.org/m2/" }
+        google() {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots"
+            name "SonatypeSnapshots"
+            mavenContent {
+                snapshotsOnly()
+            }
+        }
+        maven { url = "https://maven.aliyun.com/repository/gradle-plugin/" }
+        maven { url = "https://maven.aliyun.com/repository/spring-plugin/" }
+        maven { url = "https://jitpack.io" }
+        maven { url = "https://s3.amazonaws.com/repo.commonsware.com" }
+        maven { url = "https://maven.pkg.jetbrains.space/public/p/compose/dev" }
+        maven { url = "https://api.xposed.info/" }
+        maven { url = "https://jogamp.org/deployment/maven" }
+        maven { url = "https://developer.huawei.com/repo/" }
+        maven { url = "https://raw.githubusercontent.com/cybernhl/maven-repository/master/" }
+        maven { url = "https://maven.aliyun.com/repository/jcenter" }
+        maven { url = "https://maven.aliyun.com/repository/public/" }
+        maven { url = "https://maven.aliyun.com/repository/spring/" }
+        maven { url = "https://maven.aliyun.com/repository/google/" }
+        maven { url = "https://maven.aliyun.com/repository/grails-core/" }
+        maven { url = "https://maven.aliyun.com/repository/apache-snapshots/" }
+        maven { url = "https://packages.jetbrains.team/maven/p/skija/maven" }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$agp_gradle"
@@ -16,11 +45,7 @@ buildscript {
 }
 
 allprojects {
-    repositories {
-        google()
-        maven { url 'https://maven.google.com' }
-        jcenter()
-    }
+
 }
 
 task clean(type: Delete) {
