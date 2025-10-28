@@ -5,7 +5,7 @@ plugins {
 
 android {
     compileSdk 36
-    
+
     buildFeatures {
         buildConfig true
         viewBinding true
@@ -50,6 +50,20 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    packagingOptions {
+        resources {
+            excludes.addAll(
+                    listOf(
+                            "META-INF/AL2.0",
+                            "META-INF/LGPL2.1",
+                            "META-INF/versions/9/OSGI-INF/MANIFEST.MF",
+                            "META-INF/LGPL2.1",
+                            "META-INF/LGPL2.1",
+                    )
+            )
+        }
     }
 }
 
